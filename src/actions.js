@@ -1,11 +1,11 @@
-import fetch from 'whatwg-fetch';
+import fetch from 'isomorphic-fetch';
 
 export const REQUEST_DATA = 'REQUEST_DATA';
 export const RECEIVE_DATA = 'RECEIVE_DATA';
 export const UPDATE_DATA = 'UPDATE_DATA';
 export const DELETE_DATA = 'DELETE_DATA';
-const apiUrl = 'http://localhost:3000';
-// const apiUrl = 'https://cashmerebot.herokuapp.com';
+// const apiUrl = 'http://localhost:3000';
+const apiUrl = 'https://cashmerebot.herokuapp.com';
 
 export function requestData() {
   return {

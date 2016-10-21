@@ -22,11 +22,11 @@ module.exports = {
   },
   output: {
     path: __dirname + '/dist',
-    publicPath: '/app/',
+    publicPath: '/',
     filename: 'bundle.js'
   },
   devServer: {
-    contentBase: '/dist',
+    contentBase: './dist',
     hot: true
   },
   plugins: [
