@@ -1,4 +1,4 @@
-import fetch from 'isomorphic-fetch'
+import fetch from 'whatwg-fetch';
 
 export const REQUEST_DATA = 'REQUEST_DATA';
 export const RECEIVE_DATA = 'RECEIVE_DATA';

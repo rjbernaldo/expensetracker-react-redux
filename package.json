@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "server:dev": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --config ./webpack.dev.config.js",
+    "server:dev": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --config ./webpack.dev.config.js --host 0.0.0.0",
     "test": "./node_modules/mocha/bin/mocha --compilers js:babel-core/register --require ./test/setup.js 'test/**/*.@(js|jsx)'",
     "test:watch": "npm run test -- --watch --watch-extensions jsx",
     "build": "webpack --config ./webpack.prod.config.js"
@@ -17,6 +17,8 @@
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "react-redux": "^4.4.5",
+    "react-router": "^2.8.1",
+    "react-router-redux": "^4.0.6",
     "redux": "^3.6.0",
     "redux-logger": "^2.6.1",
     "redux-thunk": "^2.1.0",

@@ -9,6 +9,6 @@ RUN npm install
 ENV app /app
 
 RUN mkdir $app
+ADD . $app
 RUN cp -a /tmp/node_modules $app
 WORKDIR $app
-ADD . $app

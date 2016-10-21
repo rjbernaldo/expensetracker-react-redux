@@ -21,12 +21,12 @@ module.exports = {
     extensions: ['', '.js', '.jsx']
   },
   output: {
-    path: __dirname + '/public',
+    path: __dirname + '/dist',
     publicPath: '/app/',
     filename: 'bundle.js'
   },
   devServer: {
-    contentBase: '/public',
+    contentBase: '/dist',
     hot: true
   },
   plugins: [

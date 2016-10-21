@@ -5,4 +5,14 @@ services:
     ports:
       - "8080:8080"
     volumes:
-      - .:/app
+      - .:/app:rw
+    command: >
+      sh -c '
+      if test -d node_modules;
+      then
+        echo node_modules_exists ;
+      else
+        cp -a /tmp/node_modules /app;
+      fi &&
+      npm install && npm run server:dev
+      '
