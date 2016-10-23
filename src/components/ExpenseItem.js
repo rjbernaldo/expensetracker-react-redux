@@ -1,19 +1,15 @@
+import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import { showModal } from '../actions';
 
-const ExpenseItem = ({ expense, handleOpenModal }) => {
-  let handleClick = () => {
-    handleOpenModal({
+const ExpenseItem = ({ expense, dispatch }) => {
+  return (
+    <tr onClick={ () => dispatch(showModal({
       modalType: 'EDIT_EXPENSE',
       modalProps: {
-        handleOpenModal,
-        expense
+        expense: expense
       }
-    });
-  }
-
-  return (
-    <tr onClick={ handleClick }>
+    })) }>
       <td>{ expense.item }</td>
       <td>{ expense.location }</td>
       <td>{ expense.category }</td>
@@ -22,4 +18,4 @@ const ExpenseItem = ({ expense, handleOpenModal }) => {
   );
 }
 
-export default ExpenseItem;
+export default connect()(ExpenseItem);

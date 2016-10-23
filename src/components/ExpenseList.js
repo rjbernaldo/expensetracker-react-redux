@@ -1,8 +1,13 @@
+import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import ExpenseItem from './ExpenseItem';
 import ExpenseTotal from './ExpenseTotal';
 
-const ExpenseList = ({ handlers, expenses }) => {
+const ExpenseList = ({ expenses, onClick }) => {
+  let totalAmount = expenses.data.reduce((a,b) => {
+    return a + parseInt(b.amount);
+  }, 0);
+
   return (
     <table>
       <thead>
@@ -14,17 +19,25 @@ const ExpenseList = ({ handlers, expenses }) => {
         </tr>
       </thead>
       <tbody>
-        {expenses.map(expense =>
-          <ExpenseItem key={ expense.id } expense={ expense } handleOpenModal={ handlers.handleOpenModal } />
+        {expenses.data.map(expense =>
+          <ExpenseItem
+            key={ expense.id }
+            expense={ expense }
+            onClick={ onClick }
+          />
         )}
       </tbody>
       <tfoot>
-        <ExpenseTotal amount={expenses.reduce((a,b) => {
-          return a + parseInt(b.amount);
-        }, 0)} />
+        <ExpenseTotal amount={ totalAmount } />
       </tfoot>
     </table>
   );
 };
 
-export default ExpenseList;
+const mapStateToProps = (state) => {
+  return {
+    expenses: state.expenses
+  };
+}
+
+export default connect(mapStateToProps)(ExpenseList);

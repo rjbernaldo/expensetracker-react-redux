@@ -34,8 +34,10 @@ const ModalEdit = ({ expense, dispatch }) => (
   </div>
 );
 
-export default connect(
-  (state, ownProps) => ({
+const mapStateToProps = (state, ownProps) => {
+  return {
     expense: ownProps.expense
-  })
-)(ModalEdit)
+  };
+};
+
+export default connect(mapStateToProps)(ModalEdit);
