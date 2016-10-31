@@ -4,8 +4,7 @@ export const REQUEST_DATA = 'REQUEST_DATA';
 export const RECEIVE_DATA = 'RECEIVE_DATA';
 export const UPDATE_DATA = 'UPDATE_DATA';
 export const DELETE_DATA = 'DELETE_DATA';
-// const apiUrl = 'http://localhost:3000';
-const apiUrl = 'https://cashmerebot.herokuapp.com';
+const apiUrl = 'http://server.expensetracker.rjbernaldo.com';
 
 export function requestData() {
   return {
@@ -27,8 +26,15 @@ export function fetchData(params) {
     dispatch(requestData())
 
     return fetch(url)
-      .then(response => response.json())
-      .then(json => dispatch(receiveData(json)));
+      .then((res) => {
+        console.log(res);
+        if (!res.ok) throw Error(res.statusText);
+        
+        return res;
+      })
+      .then(res => res.json())
+      .then(json => dispatch(receiveData(json)))
+      .catch((err) => { console.log(err); });
   };
 }
 
@@ -46,8 +52,8 @@ export function deleteData(expense) {
   };
 }
 
-export function deleteExpense(expense) {
-  const url = `${apiUrl}/users/950498005077644/expenses/${expense.id}`;
+export function deleteExpense(params) {
+  const url = `${apiUrl}/users/${params.senderId}/expenses/${expense.id}`;
 
   return function(dispatch) {
     return fetch(url, {
@@ -60,10 +66,16 @@ export function deleteExpense(expense) {
         expense: expense
       })
     })
+    .then((res) => {
+      if (!res.ok) throw Error(res.statusText);
+      
+      return res;
+    })
     .then(response => response.json())
     .then((json) => {
       dispatch(deleteData(json));
-    });
+    })
+    .catch((err) => { console.log(err); });
   };
   return {
     type: DELETE_DATA,
@@ -71,8 +83,8 @@ export function deleteExpense(expense) {
   };
 }
 
-export function updateExpense(expense) {
-  const url = `${apiUrl}/users/950498005077644/expenses/${expense.id}`;
+export function updateExpense(params) {
+  const url = `${apiUrl}/users/${params.senderId}/expenses/${expense.id}`;
 
   return function(dispatch) {
     return fetch(url, {
@@ -85,10 +97,16 @@ export function updateExpense(expense) {
         expense: expense
       })
     })
+    .then((res) => {
+      if (!res.ok) throw Error(res.statusText);
+      
+      return res;
+    })
     .then(response => response.json())
     .then((json) => {
       dispatch(updateData(json));
-    });
+    })
+    .catch((err) => { console.log(err); });
   };
 }
 
