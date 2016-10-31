@@ -20,8 +20,8 @@ export function receiveData(data) {
   };
 }
 
-export function fetchData() {
-  const url = `${apiUrl}/users/950498005077644/expenses`;
+export function fetchData(params) {
+  const url = `${apiUrl}/users/${params.senderId}/expenses`;
 
   return function(dispatch) {
     dispatch(requestData())

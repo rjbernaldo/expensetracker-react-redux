@@ -4,8 +4,8 @@ import ExpenseList from './ExpenseList';
 import ModalRoot from './ModalRoot';
 import { fetchData } from '../actions';
 
-const App = ({ dispatch }) => {
-  dispatch(fetchData());
+const App = ({ params, dispatch }) => {
+  dispatch(fetchData(params));
 
   return (
     <div style={{padding: '10px'}}>
