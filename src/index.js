@@ -1,4 +1,4 @@
-require('whatwg-fetch');
+require('./lib/whatwg-fetch/fetch.js');
 require('./lib/kube-6.0.1/dist/css/kube.css');
 
 import 'react-hot-loader/patch';

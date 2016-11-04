@@ -4,7 +4,7 @@ export const REQUEST_DATA = 'REQUEST_DATA';
 export const RECEIVE_DATA = 'RECEIVE_DATA';
 export const UPDATE_DATA = 'UPDATE_DATA';
 export const DELETE_DATA = 'DELETE_DATA';
-const apiUrl = 'http://server.expensetracker.rjbernaldo.com';
+const API_URL = process.env.API_URL;
 
 export function requestData() {
   return {
@@ -20,7 +20,7 @@ export function receiveData(data) {
 }
 
 export function fetchData(params) {
-  const url = `${apiUrl}/users/${params.senderId}/expenses`;
+  const url = `${API_URL}/users/${params.senderId}/expenses`;
 
   return function(dispatch) {
     dispatch(requestData())
@@ -53,7 +53,7 @@ export function deleteData(expense) {
 }
 
 export function deleteExpense(params) {
-  const url = `${apiUrl}/users/${params.senderId}/expenses/${expense.id}`;
+  const url = `${API_URL}/users/${params.senderId}/expenses/${expense.id}`;
 
   return function(dispatch) {
     return fetch(url, {
@@ -84,7 +84,7 @@ export function deleteExpense(params) {
 }
 
 export function updateExpense(params) {
-  const url = `${apiUrl}/users/${params.senderId}/expenses/${expense.id}`;
+  const url = `${API_URL}/users/${params.senderId}/expenses/${expense.id}`;
 
   return function(dispatch) {
     return fetch(url, {

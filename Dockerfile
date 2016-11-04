@@ -1,14 +1,13 @@
-FROM node:4-onbuild
-expose 8080
+FROM node:4
 
-COPY package.json /tmp/
+COPY package.json /tmp/package.json
 WORKDIR /tmp
-RUN npm config set registry http://registry.npmjs.org/
 RUN npm install
 
 ENV app /app
-
 RUN mkdir $app
-ADD . $app
 RUN cp -a /tmp/node_modules $app
+COPY . $app
 WORKDIR $app
+
+EXPOSE 8080

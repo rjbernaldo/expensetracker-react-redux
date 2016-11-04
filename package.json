@@ -7,8 +7,8 @@
     "server:dev": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --config ./webpack.dev.config.js --host 0.0.0.0",
     "test": "./node_modules/mocha/bin/mocha --compilers js:babel-core/register --require ./test/setup.js 'test/**/*.@(js|jsx)'",
     "test:watch": "npm run test -- --watch --watch-extensions jsx",
-    "build": "webpack --config ./webpack.prod.config.js",
-    "deploy": "npm run build && npm start"
+    "build": "./node_modules/webpack/bin/webpack.js --config ./webpack.prod.config.js",
+    "start": "rm -f ./dist/bundle.js && npm run build && node index.js"
   },
   "author": "Rj Bernaldo",
   "license": "MIT",
@@ -24,7 +24,8 @@
     "react-router-redux": "^4.0.6",
     "redux": "^3.6.0",
     "redux-logger": "^2.6.1",
-    "redux-thunk": "^2.1.0"
+    "redux-thunk": "^2.1.0",
+    "whatwg-fetch": "^1.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.14.0",

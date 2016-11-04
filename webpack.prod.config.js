@@ -18,15 +18,14 @@ module.exports = {
     extensions: ['', '.js', '.jsx']
   },
   output: {
-    path: __dirname + '/../public/app',
-    publicPath: '/app/',
+    path: __dirname + '/dist',
+    publicPath: '/',
     filename: 'bundle.js'
   },
-  devServer: {
-    contentBase: '../public/app',
-    hot: true
-  },
   plugins: [
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': '"production"',
+      'process.env.API_URL': '"http://api.expensetracker.rjbernaldo.com"',
+    })
   ]
 }
