@@ -25,7 +25,7 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': '"production"',
-      'process.env.API_URL': '"http://api.expensetracker.rjbernaldo.com"',
+      'process.env.API_URL': '"https://api.expensetracker.rjbernaldo.com"',
     })
   ]
 }
