@@ -1,8 +1,9 @@
 var webpack = require('webpack');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: [
-    'webpack-dev-server/client?http://expensetracker.localhost',
+    'webpack-dev-server/client?http://dashboard.edifybot.localhost',
     'webpack/hot/only-dev-server',
     'react-hot-loader/patch',
     './src/index'
@@ -34,10 +35,13 @@ module.exports = {
     poll: true
   },
   plugins: [
+    new HtmlWebpackPlugin({
+      template: 'src/index.html'
+    }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': '"development"',
-      'process.env.API_URL': '"http://api.expensetracker.localhost"'
+      'process.env.API_URL': '"http://api.edifybot.localhost"'
     })
   ]
 }

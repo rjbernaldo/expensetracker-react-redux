@@ -1,10 +1,65 @@
 import fetch from 'isomorphic-fetch';
 
+const API_URL = process.env.API_URL;
+
+export const SET_DATE = 'SET_DATE';
+export const PREV_DATE = 'PREV_DATE';
+export const NEXT_DATE = 'NEXT_DATE';
+
+export function setDate(month, date, year) {
+  let now = new Date()
+  month = month || now.getMonth();
+  date = date || now.getDate();
+  year = year || now.getFullYear();
+  
+  return {
+    type: SET_DATE,
+    date: {
+      month: month,
+      date: date,
+      year: year
+    }
+  };
+}
+
+export function prevDate() {
+  
+}
+
+export function nextDate() {
+  
+}
+
+export const INITIALIZE = 'INITIALIZE_APP';
+
+export function initializeApp(senderId) {
+  return function(dispatch) {
+    let url = `${API_URL}/users/${senderId}`;
+    return fetch(url)
+      .then((res) => {
+        if (!res.ok) throw Error(res.statusText);
+
+        return res;
+      })
+      .then(res => res.json())
+      .then(json => dispatch(setUser(json)))
+      .catch((err) => { console.log(err); });
+  }
+}
+
+export const SET_USER = 'SET_USER';
+
+export function setUser(user) {
+  return {
+    type: SET_USER,
+    user: user
+  };
+}
+
 export const REQUEST_DATA = 'REQUEST_DATA';
 export const RECEIVE_DATA = 'RECEIVE_DATA';
 export const UPDATE_DATA = 'UPDATE_DATA';
 export const DELETE_DATA = 'DELETE_DATA';
-const API_URL = process.env.API_URL;
 
 export function requestData() {
   return {
@@ -19,15 +74,23 @@ export function receiveData(data) {
   };
 }
 
-export function fetchData(params) {
-  const url = `${API_URL}/users/${params.senderId}/expenses`;
+export function fetchData(dateFrom, dateTo) {
+  return function(dispatch, getState) {
+    let user = getState().user;
+    let date = getState().date;
+    let m = date.month;
+    let d = date.date;
+    let y = date.year;
+    
+    dateFrom = dateFrom || `${m}/${d}/${y}`;
+    dateTo = dateTo || `${m}/${d}/${y}`;
+    
+    let url = `${API_URL}/users/${user.sender_id}/expenses?from=${dateFrom}&to=${dateTo}`;
 
-  return function(dispatch) {
     dispatch(requestData())
 
     return fetch(url)
       .then((res) => {
-        console.log(res);
         if (!res.ok) throw Error(res.statusText);
         
         return res;
@@ -52,10 +115,11 @@ export function deleteData(expense) {
   };
 }
 
-export function deleteExpense(params) {
-  const url = `${API_URL}/users/${params.senderId}/expenses/${expense.id}`;
+export function deleteExpense(expense) {
+  return function(dispatch, getState) {
+    let user = getState().user;
+    let url = `${API_URL}/users/${user.sender_id}/expenses/${expense.id}`;
 
-  return function(dispatch) {
     return fetch(url, {
       method: 'DELETE',
       headers: {
@@ -83,10 +147,11 @@ export function deleteExpense(params) {
   };
 }
 
-export function updateExpense(params) {
-  const url = `${API_URL}/users/${params.senderId}/expenses/${expense.id}`;
+export function updateExpense(expense) {
+  return function(dispatch, getState) {
+    let user = getState().user;
+    let url = `${API_URL}/users/${user.sender_id}/expenses/${expense.id}`;
 
-  return function(dispatch) {
     return fetch(url, {
       method: 'PATCH',
       headers: {

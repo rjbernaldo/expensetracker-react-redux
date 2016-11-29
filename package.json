@@ -1,5 +1,5 @@
 {
-  "name": "expensetracker-client-react-redux",
+  "name": "edifybot_dashboard",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -36,6 +36,7 @@
     "chai": "^3.5.0",
     "chai-immutable": "^1.6.0",
     "css-loader": "^0.25.0",
+    "html-webpack-plugin": "^2.24.1",
     "jsdom": "^9.5.0",
     "mocha": "^3.1.0",
     "react-addons-test-utils": "^15.3.2",

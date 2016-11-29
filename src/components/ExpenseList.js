@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import ExpenseItem from './ExpenseItem';
 import ExpenseTotal from './ExpenseTotal';
 
-const ExpenseList = ({ expenses, onClick }) => {
+const ExpenseList = ({ expenses, currencySymbol, onClick }) => {
   let totalAmount = expenses.data.reduce((a,b) => {
     return a + parseInt(b.amount);
   }, 0);
@@ -23,6 +23,7 @@ const ExpenseList = ({ expenses, onClick }) => {
           <ExpenseItem
             key={ expense.id }
             expense={ expense }
+            currencySymbol={ currencySymbol }
             onClick={ onClick }
           />
         )}
@@ -36,7 +37,8 @@ const ExpenseList = ({ expenses, onClick }) => {
 
 const mapStateToProps = (state) => {
   return {
-    expenses: state.expenses
+    expenses: state.expenses,
+    currencySymbol: state.user.currencySymbol
   };
 }
 

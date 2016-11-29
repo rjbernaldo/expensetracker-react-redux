@@ -1,19 +1,20 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
+import { setDate, initializeApp, fetchData } from '../actions';
 import ExpenseList from './ExpenseList';
 import ModalRoot from './ModalRoot';
-import { fetchData } from '../actions';
+import DatePicker from './DatePicker';
 
 const App = ({ params, dispatch }) => {
-  dispatch(fetchData(params));
+  dispatch(setDate());
+  dispatch(initializeApp(params.senderId))
+    .then(() => {
+      dispatch(fetchData());
+    });
 
   return (
-    <div style={{padding: '10px'}}>
-      <div className="row right">
-        <div className="col">
-          <h2>Today</h2>
-        </div>
-      </div>
+    <div>
+      <DatePicker />
       <div className="row">
         <div className="col">
           <ExpenseList />

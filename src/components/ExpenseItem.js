@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import { showModal } from '../actions';
 
-const ExpenseItem = ({ expense, dispatch }) => {
+const ExpenseItem = ({ expense, currencySymbol, dispatch }) => {
   return (
     <tr onClick={ () => dispatch(showModal({
       modalType: 'EDIT_EXPENSE',
@@ -13,7 +13,7 @@ const ExpenseItem = ({ expense, dispatch }) => {
       <td>{ expense.item }</td>
       <td>{ expense.location }</td>
       <td>{ expense.category }</td>
-      <td>{ expense.amount }</td>
+      <td>{ currencySymbol ? currencySymbol : '' }{ expense.amount }</td>
     </tr>
   );
 }
