@@ -1,5 +1,6 @@
 import { connect } from 'react-redux'
-import { setDate } from '../actions'
+import { setDate, fetchData } from '../actions'
+import _ from 'underscore'
 import DatePicker from '../components/DatePicker'
 
 const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -15,18 +16,21 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
+  let throttledFetchData = _.throttle(() => { dispatch(fetchData()) }, 1000)
   return {
     nextDate: (date) => {
       let tomorrow = date
       tomorrow.setDate(tomorrow.getDate() + 1)
       
       dispatch(setDate(tomorrow))
+      throttledFetchData()
     },
     prevDate: (date) => {
       let yesterday = date
       yesterday.setDate(yesterday.getDate() - 1)
       
       dispatch(setDate(yesterday))
+      throttledFetchData()
     }
   }
 }

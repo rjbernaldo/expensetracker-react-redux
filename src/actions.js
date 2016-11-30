@@ -59,15 +59,12 @@ export function fetchData(dateFrom, dateTo) {
   return function(dispatch, getState) {
     let user = getState().user
     let date = getState().date
-    let m = date.month
-    let d = date.date
-    let y = date.year
     
-    dateFrom = dateFrom || `${m}/${d}/${y}`
-    dateTo = dateTo || `${m}/${d}/${y}`
+    dateFrom = dateFrom || `${date.m + 1}/${date.d}/${date.y}`
+    dateTo = dateTo || `${date.m + 1}/${date.d}/${date.y}`
     
-    let url = `${API_URL}/users/${user.sender_id}/expenses?from=${dateFrom}&to=${dateTo}`
-
+    let url = `${API_URL}/users/${user.sender_id}/search?from=${dateFrom}&to=${dateTo}`
+    
     dispatch(requestData())
 
     return fetch(url)
