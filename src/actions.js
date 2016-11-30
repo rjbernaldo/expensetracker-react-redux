@@ -3,31 +3,12 @@ import fetch from 'isomorphic-fetch'
 const API_URL = process.env.API_URL
 
 export const SET_DATE = 'SET_DATE'
-export const PREV_DATE = 'PREV_DATE'
-export const NEXT_DATE = 'NEXT_DATE'
 
-export function setDate(month, date, year) {
-  let now = new Date()
-  month = month || now.getMonth()
-  date = date || now.getDate()
-  year = year || now.getFullYear()
-  
+export function setDate(date) {
   return {
     type: SET_DATE,
-    date: {
-      month: month,
-      date: date,
-      year: year
-    }
+    date: date
   }
-}
-
-export function prevDate() {
-  
-}
-
-export function nextDate() {
-  
 }
 
 export const INITIALIZE = 'INITIALIZE_APP'

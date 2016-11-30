@@ -11,7 +11,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     initializeApp: (senderId) => {
-      dispatch(setDate())
+      // dispatch(setDate(new Date))
       dispatch(initializeApp(senderId)).then(() => { dispatch(fetchData()) })
     }
   }

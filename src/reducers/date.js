@@ -1,27 +1,23 @@
-import { SET_DATE, PREV_DATE, NEXT_DATE } from '../actions'
+import { SET_DATE } from '../actions'
+
+const initialDate = new Date()
 
 const initialState = {
-  month: undefined,
-  date: undefined,
-  year: undefined
+  date: initialDate,
+  m: initialDate.getMonth(),
+  d: initialDate.getDate(),
+  y: initialDate.getFullYear()
 }
 
 export default function date(state = initialState, action) {
   switch(action.type) {
     case SET_DATE:
-      return Object.assign({}, state, action.date)
-    // case PREV_DATE:
-    //   return Object.assign({}, state, {
-    //     month: action.date.month,
-    //     date: action.date.date,
-    //     year: action.date.year
-    //   })
-    // case NEXT_DATE:
-    //   return Object.assign({}, state, {
-    //     month: action.date.month,
-    //     date: action.date.date,
-    //     year: action.date.year
-    //   })
+      return Object.assign({}, state, {
+        date: action.date,
+        m: action.date.getMonth(),
+        d: action.date.getDate(),
+        y: action.date.getFullYear()
+      })
     default:
       return state
   }

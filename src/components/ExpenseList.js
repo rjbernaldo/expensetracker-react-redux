@@ -4,28 +4,32 @@ import ComputedExpenseTotal from '../containers/ComputedExpenseTotal'
 
 const ExpenseList = ({ expenses, currencySymbol, onClick }) => {
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>Item</th>
-          <th>Location</th>
-          <th>Category</th>
-          <th>Amount</th>
-        </tr>
-      </thead>
-      <tbody>
-        {expenses.data.map(expense =>
-          <FormattedExpenseItem
-            key={ expense.id }
-            { ...expense }
-            onClick={ () => { onClick(expense) } }
-          />
-        )}
-      </tbody>
-      <tfoot>
-        <ComputedExpenseTotal />
-      </tfoot>
-    </table>
+    <div className="row">
+      <div className="col">
+        <table>
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Location</th>
+              <th>Category</th>
+              <th>Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            {expenses.data.map(expense =>
+              <FormattedExpenseItem
+                key={ expense.id }
+                { ...expense }
+                onClick={ () => { onClick(expense) } }
+              />
+            )}
+          </tbody>
+          <tfoot>
+            <ComputedExpenseTotal />
+          </tfoot>
+        </table>
+      </div>
+    </div>
   )
 }
 
