@@ -1,15 +1,15 @@
-import { connect } from 'react-redux';
-import React, { Component } from 'react';
-import { nextDate, prevDate } from '../actions';
+import { connect } from 'react-redux'
+import React, { Component } from 'react'
+import { nextDate, prevDate } from '../actions'
 
 const DatePicker = ({ dispatch, date }) => {
-  let now = new Date();
-  let m = now.getMonth();
-  let d = now.getDate();
-  let y = now.getFullYear();
-  let isToday = m === date.month && d === date.date && y === date.year;
+  let now = new Date()
+  let m = now.getMonth()
+  let d = now.getDate()
+  let y = now.getFullYear()
+  let isToday = m === date.month && d === date.date && y === date.year
   
-  let currentDate = isToday ? 'Today' : `${date.month}/${date.date}/${date.year}`;
+  let currentDate = isToday ? 'Today' : `${date.month}/${date.date}/${date.year}`
   
   return (
     <div className="form" style={{ padding: '10px' }}>
@@ -19,13 +19,13 @@ const DatePicker = ({ dispatch, date }) => {
         <button className="button inverted" onClick={ () => { dispatch(nextDate())} }>{ '>' }</button>
       </div>
     </div>
-  );
-};
+  )
+}
 
 const mapStateToProps = (state) => {
   return {
     date: state.date
-  };
+  }
 }
 
-export default connect(mapStateToProps)(DatePicker);
+export default connect(mapStateToProps)(DatePicker)

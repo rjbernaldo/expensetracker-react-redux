@@ -1,21 +1,16 @@
-import { connect } from 'react-redux';
-import React, { Component } from 'react';
-import { showModal } from '../actions';
+import { connect } from 'react-redux'
+import React, { Component } from 'react'
+import { showModal } from '../actions'
 
-const ExpenseItem = ({ expense, currencySymbol, dispatch }) => {
+const ExpenseItem = ({ item, location, category, amount, currencySymbol, onClick }) => {
   return (
-    <tr onClick={ () => dispatch(showModal({
-      modalType: 'EDIT_EXPENSE',
-      modalProps: {
-        expense: expense
-      }
-    })) }>
-      <td>{ expense.item }</td>
-      <td>{ expense.location }</td>
-      <td>{ expense.category }</td>
-      <td>{ currencySymbol ? currencySymbol : '' }{ expense.amount }</td>
+    <tr onClick={ onClick }>
+      <td>{ item }</td>
+      <td>{ location }</td>
+      <td>{ category }</td>
+      <td>{ currencySymbol }{ amount }</td>
     </tr>
-  );
+  )
 }
 
-export default connect()(ExpenseItem);
+export default ExpenseItem

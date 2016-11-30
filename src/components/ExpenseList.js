@@ -1,13 +1,8 @@
-import { connect } from 'react-redux';
-import React, { Component } from 'react';
-import ExpenseItem from './ExpenseItem';
-import ExpenseTotal from './ExpenseTotal';
+import React, { PropTypes } from 'react'
+import FormattedExpenseItem from '../containers/FormattedExpenseItem'
+import ComputedExpenseTotal from '../containers/ComputedExpenseTotal'
 
 const ExpenseList = ({ expenses, currencySymbol, onClick }) => {
-  let totalAmount = expenses.data.reduce((a,b) => {
-    return a + parseInt(b.amount);
-  }, 0);
-
   return (
     <table>
       <thead>
@@ -20,26 +15,17 @@ const ExpenseList = ({ expenses, currencySymbol, onClick }) => {
       </thead>
       <tbody>
         {expenses.data.map(expense =>
-          <ExpenseItem
+          <FormattedExpenseItem
             key={ expense.id }
-            expense={ expense }
-            currencySymbol={ currencySymbol }
-            onClick={ onClick }
+            { ...expense }
           />
         )}
       </tbody>
       <tfoot>
-        <ExpenseTotal amount={ totalAmount } />
+        <ComputedExpenseTotal />
       </tfoot>
     </table>
-  );
-};
-
-const mapStateToProps = (state) => {
-  return {
-    expenses: state.expenses,
-    currencySymbol: state.user.currencySymbol
-  };
+  )
 }
 
-export default connect(mapStateToProps)(ExpenseList);
+export default ExpenseList

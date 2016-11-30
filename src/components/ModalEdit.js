@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { hideModal, updateExpense, deleteExpense } from '../actions';
-import { connect } from 'react-redux';
+import React, { Component } from 'react'
+import { hideModal, updateExpense, deleteExpense } from '../actions'
+import { connect } from 'react-redux'
 
 const ModalEdit = ({ expense, dispatch }) => (
   <div className="modal-box">
@@ -25,34 +25,34 @@ const ModalEdit = ({ expense, dispatch }) => (
           </div>
           <div className="form-item">
             <button className="button outline" onClick={() => {
-              expense.item = document.querySelector('.form-expense-item').value;
-              expense.location = document.querySelector('.form-expense-location').value;
-              expense.category = document.querySelector('.form-expense-category').value;
-              expense.amount = document.querySelector('.form-expense-amount').value;
+              expense.item = document.querySelector('.form-expense-item').value
+              expense.location = document.querySelector('.form-expense-location').value
+              expense.category = document.querySelector('.form-expense-category').value
+              expense.amount = document.querySelector('.form-expense-amount').value
 
               dispatch(updateExpense(expense)).then(() => {
-                dispatch(hideModal());
-              });
+                dispatch(hideModal())
+              })
             }}>Save</button>
             <button className="button inverted" onClick={() => {
               dispatch(deleteExpense(expense)).then(() => {
-                dispatch(hideModal());
-              });
+                dispatch(hideModal())
+              })
             }}>Delete</button>
             <button className="button outline" onClick={() => {
-              dispatch(hideModal());
+              dispatch(hideModal())
             }}>Cancel</button>
           </div>
         </div>
       </div>
     </div>
   </div>
-);
+)
 
 const mapStateToProps = (state, ownProps) => {
   return {
     expense: ownProps.expense
-  };
-};
+  }
+}
 
-export default connect(mapStateToProps)(ModalEdit);
+export default connect(mapStateToProps)(ModalEdit)

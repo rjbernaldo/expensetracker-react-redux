@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
-const ExpenseTotal = ({ amount }) => {
+const ExpenseTotal = ({ total }) => {
   return (
     <tr>
       <td>Total</td>
       <td></td>
       <td></td>
-      <td>{ amount }</td>
+      <td>{ total }</td>
     </tr>
   )
-};
+}
 
-export default ExpenseTotal;
+export default ExpenseTotal

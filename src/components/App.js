@@ -1,28 +1,23 @@
-import { connect } from 'react-redux';
-import React, { Component } from 'react';
-import { setDate, initializeApp, fetchData } from '../actions';
-import ExpenseList from './ExpenseList';
-import ModalRoot from './ModalRoot';
-import DatePicker from './DatePicker';
+import { connect } from 'react-redux'
+import React, { Component } from 'react'
+import CurrentExpenseList from '../containers/CurrentExpenseList'
+import ModalRoot from './ModalRoot'
+import DatePicker from './DatePicker'
 
-const App = ({ params, dispatch }) => {
-  dispatch(setDate());
-  dispatch(initializeApp(params.senderId))
-    .then(() => {
-      dispatch(fetchData());
-    });
-
+const App = ({ initializeApp, senderId }) => {
+  initializeApp(senderId)
+  
   return (
     <div>
       <DatePicker />
       <div className="row">
         <div className="col">
-          <ExpenseList />
+          <CurrentExpenseList />
         </div>
       </div>
       <ModalRoot />
     </div>
-  );
-};
+  )
+}
 
-export default connect()(App);
+export default App
