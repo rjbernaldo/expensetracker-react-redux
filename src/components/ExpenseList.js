@@ -10,7 +10,6 @@ const ExpenseList = ({ expenses, currencySymbol, onClick }) => {
           <thead>
             <tr>
               <th>Item</th>
-              <th>Location</th>
               <th>Category</th>
               <th>Amount</th>
             </tr>

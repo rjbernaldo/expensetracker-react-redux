@@ -5,7 +5,6 @@ const ExpenseTotal = ({ total }) => {
     <tr>
       <td>Total</td>
       <td></td>
-      <td></td>
       <td>{ total }</td>
     </tr>
   )
