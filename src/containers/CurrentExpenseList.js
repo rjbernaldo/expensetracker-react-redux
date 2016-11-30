@@ -1,4 +1,5 @@
 import { connect } from 'react-redux'
+import { showModal } from '../actions'
 import ExpenseList from '../components/ExpenseList'
 
 const mapStateToProps = (state) => {
@@ -7,6 +8,19 @@ const mapStateToProps = (state) => {
   }
 }
 
-const CurrentExpenseList = connect(mapStateToProps)(ExpenseList)
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onClick: (expense) => {
+      dispatch(showModal({
+        modalType: 'EDIT_EXPENSE',
+        modalProps: {
+          expense: expense
+        }
+      }))
+    }
+  }
+}
+
+const CurrentExpenseList = connect(mapStateToProps, mapDispatchToProps)(ExpenseList)
 
 export default CurrentExpenseList

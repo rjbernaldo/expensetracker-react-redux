@@ -18,6 +18,7 @@ const ExpenseList = ({ expenses, currencySymbol, onClick }) => {
           <FormattedExpenseItem
             key={ expense.id }
             { ...expense }
+            onClick={ () => { onClick(expense) } }
           />
         )}
       </tbody>

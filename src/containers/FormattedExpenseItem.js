@@ -7,19 +7,6 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onClick: (expense) => {
-      dispatch(showModal({
-        modalType: 'EDIT_EXPENSE',
-        modalProps: {
-          expense: expense
-        }
-      }))
-    }
-  }
-}
-
-const FormattedExpenseItem = connect(mapStateToProps, mapDispatchToProps)(ExpenseItem)
+const FormattedExpenseItem = connect(mapStateToProps)(ExpenseItem)
 
 export default FormattedExpenseItem
