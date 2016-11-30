@@ -9,7 +9,6 @@ import configureStore  from './configureStore'
 
 const store = configureStore()
 
-// import { fetchData } from './actions'
 // import { AppContainer } from 'react-hot-loader'
 
 ReactDOM.render(
